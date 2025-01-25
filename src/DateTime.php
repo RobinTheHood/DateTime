@@ -1,4 +1,5 @@
 <?php
+
 namespace RobinTheHood\DateTime;
 
 class DateTime
@@ -265,7 +266,8 @@ class DateTime
      ********************
      */
 
-    public static function isDate($value) {
+    public static function isDate($value)
+    {
         if (!trim($value)) {
             return false;
         }
@@ -281,7 +283,8 @@ class DateTime
         return true;
     }
 
-    public static function isTime($value) {
+    public static function isTime($value)
+    {
         if (!trim($value)) {
             return false;
         }
@@ -291,7 +294,8 @@ class DateTime
         return true;
     }
 
-    public static function isDateTime($value) {
+    public static function isDateTime($value)
+    {
         if (!trim($value)) {
             return false;
         }
@@ -301,7 +305,8 @@ class DateTime
         return true;
     }
 
-    public static function isDateTimeDate($value) {
+    public static function isDateTimeDate($value)
+    {
         if (!trim($value)) {
             return false;
         }
@@ -311,7 +316,8 @@ class DateTime
         return true;
     }
 
-    public static function isDateTimeTime($value) {
+    public static function isDateTimeTime($value)
+    {
         $value = trim($value);
         if (!$value) {
             return false;
@@ -366,7 +372,7 @@ class DateTime
 
     public static function modifyDateTime($dateTime, $value)
     {
-        $date = new DateTime($dateTime);
+        $date = new \DateTime($dateTime);
         $date->modify($value);
         return $date->format("Y-m-d H:i:s");
     }
@@ -381,7 +387,7 @@ class DateTime
         } else {
             $postfix = ' Tage';
         }
-        if ($days < 0 ) {
+        if ($days < 0) {
             $str = '-' . abs($days) . $postfix;
         } else {
             $str = $days . $postfix;
@@ -395,17 +401,20 @@ class DateTime
      *    DATUM HILFSFUNTIONEN    *
      ******************************
      */
-    public static function cutTime($dateTime) {
+    public static function cutTime($dateTime)
+    {
         return substr($dateTime, 0, 10);
     }
 
-    public static function cutDate($dateTime) {
+    public static function cutDate($dateTime)
+    {
         return substr($dateTime, 11, 8);
     }
 
     /*Gibt ein DateTime Obj zurueck passend fuer die Datenbank*/
-    public static function makeDateTime($day, $month, $year, $hour, $min, $sec) {
-        return $year ."-". $month ."-". $day ." ". $hour .":". $min .":". $sec;
+    public static function makeDateTime($day, $month, $year, $hour, $min, $sec)
+    {
+        return $year . "-" . $month . "-" . $day . " " . $hour . ":" . $min . ":" . $sec;
     }
 
 
@@ -414,12 +423,12 @@ class DateTime
     werden oder mit den folgenen Funktionen*/
     public static function dateTimeToTimeStamp($datetime)
     {
-        $year   = substr($datetime,0,4);
-        $month  = substr($datetime,5,2);
-        $day    = substr($datetime,8,2);
-        $hour   = substr($datetime,11,2);
-        $minute = substr($datetime,14,2);
-        $second = substr($datetime,17,2);
+        $year   = substr($datetime, 0, 4);
+        $month  = substr($datetime, 5, 2);
+        $day    = substr($datetime, 8, 2);
+        $hour   = substr($datetime, 11, 2);
+        $minute = substr($datetime, 14, 2);
+        $second = substr($datetime, 17, 2);
 
         date_default_timezone_set("Europe/Berlin");
         $string = mktime($hour, $minute, $second, $month, $day, $year);
